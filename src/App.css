@@ -1,0 +1,47 @@
+/* GLOBAL RULES  */
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Lato;
+}
+.container {
+  width: 1240px;
+  margin: 0 auto;
+}
+button {
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  font-size: 0.75em;
+  line-height: 16px;
+  font-weight: 300;
+  outline: none;
+}
+/* ----------------- */
+/* HEADER  */
+/* ----------------- */
+
+header {
+  padding: 10px;
+  border-bottom: solid #f5f6f7 2px;
+}
+header > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header img {
+  width: 76px;
+}
+header button:first-child {
+  color: #0ab1ba;
+  border: #0ab1ba 1px solid;
+  background-color: white;
+  margin-right: 10px;
+}
+header button:last-child {
+  background-color: #0ab1ba;
+  color: white;
+  border: 1px solid #0ab1ba;
+}

@@ -1,8 +1,9 @@
-import React from "react";
+// Import des HOOKS
 import { Link } from "react-router-dom";
-import axios from "axios";
-
 import { useEffect, useState } from "react";
+// Import des PACKAGES
+import axios from "axios";
+import Header from "../components/Header";
 
 const Home = () => {
   const [data, setData] = useState({});
@@ -15,8 +16,9 @@ const Home = () => {
         const response = await axios.get(
           "https://my-vinted-project.herokuapp.com/offers"
         );
-        console.log(response);
-        setData(response.data);
+        console.log(response.data.results);
+        setData(response.data.results);
+        console.log(data);
         setLoader(false);
       } catch (error) {
         console.log(error.message);
@@ -24,15 +26,20 @@ const Home = () => {
     };
     fetchData();
   }, []);
+
   return (
     <div>
       {isLoading ? (
         <span>Loading en cours</span>
       ) : (
-        <div>
+        <main>
+          <Header />
           <span>Home</span>
           <Link to={`/offer/${id}`}>Voir l'annonce</Link>
-        </div>
+          {data.map((offers) => {
+            <span>{offers.name}</span>;
+          })}
+        </main>
       )}
     </div>
   );

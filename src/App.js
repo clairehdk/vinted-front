@@ -8,8 +8,8 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route>
-          <Offer path="/offer/:id" />
+        <Route path="/offer/:id">
+          <Offer />
         </Route>
         <Route path="/">
           <Home />

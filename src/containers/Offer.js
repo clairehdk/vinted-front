@@ -1,15 +1,20 @@
+// Import des HOOKS
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+// Import des PACKAGES
+import axios from "axios";
+// Import des COMPOSANTS
+import Header from "../components/Header";
 
 const Product = () => {
-  // récupérer l'id
-  // faire une requête au serveur
   const { id } = useParams();
-
   return (
-    <div>
+    <main>
+      <Header />
       Page d'offre
       <p>J'ai cliqué sur l'id : {id}</p>
-    </div>
+      <Link to="/">Retour à la homepage</Link>
+    </main>
   );
 };
 
