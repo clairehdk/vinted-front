@@ -45,20 +45,17 @@ const Product = () => {
               <div className="infos_offer">
                 <Price price={data.product_price} />
                 <Line />
-                {data.product_details.map((detail, index) => {
+                {data.product_details.map((elem, index) => {
                   return (
                     <div className="product_details" key={index}>
-                      <span>{detail.brand}</span>
-                      <span>{detail.size}</span>
-                      <span>{detail.etat}</span>
-                      <span>{detail.color}</span>
-                      <span>{detail.location}</span>
+                      <span>{Object.keys(elem)}</span>
+                      <span>{Object.values(elem)}</span>
                     </div>
                   );
                 })}
                 <Line />
                 <span>{data.product_name}</span>
-                <span>{data.product_description}</span>
+                <span className="description">{data.product_description}</span>
                 <Line />
                 <div className="infos_owner">
                   <img

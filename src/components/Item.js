@@ -18,14 +18,10 @@ const Item = ({ offers }) => {
         ></img>
       </Link>
       <Price price={offers.product_price} />
-      {offers.product_details.map((details, index) => {
-        return (
-          <div key={index}>
-            <span>{details.size}</span>
-            <span>{details.brand}</span>
-          </div>
-        );
-      })}
+      <div className="item_details">
+        <span>{offers.product_details[2].size}</span>
+        <span>{offers.product_details[0].brand}</span>
+      </div>
     </div>
   );
 };

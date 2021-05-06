@@ -1,7 +1,7 @@
 import logo from "../assets/img/logo.png";
 import { Link } from "react-router-dom";
 
-const Header = ({ userToken, setUser }) => {
+const Header = ({ userToken, setUser, setModal }) => {
   return (
     <header>
       <div className="container">
@@ -10,18 +10,16 @@ const Header = ({ userToken, setUser }) => {
         </a>
         <input placeholder="Rechercher des articles"></input>
         <div>
+          <i className="fas fa-bars fa-lg hidden"></i>
           {userToken ? (
             <button className="blanc" onClick={() => setUser(null)}>
               Se déconnecter
             </button>
           ) : (
             <>
-              <Link to="/signup">
-                <button className="blanc">S'inscire</button>
-              </Link>
-              <Link to="/login">
-                <button className="blanc">Se connecter</button>
-              </Link>
+              <button onClick={setModal} className="blanc">
+                S'inscire | Se connecter
+              </button>
             </>
           )}
           <button className="bleu">Vends tes articles</button>

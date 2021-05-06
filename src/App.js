@@ -8,9 +8,15 @@ import Offer from "./containers/Offer";
 import Header from "./components/Header";
 import SignUp from "./containers/SignUp";
 import Login from "./containers/Login";
+import Modal from "./components/Modal";
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
+  const [isOpened, setOpening] = useState(false);
+
+  const setModal = () => {
+    setOpening(!isOpened);
+  };
 
   const setUser = (token) => {
     if (token) {
@@ -24,7 +30,13 @@ function App() {
 
   return (
     <Router>
-      <Header userToken={userToken} setUser={setUser} />
+      <Modal isOpened={isOpened} setModal={setModal} />
+      <Header
+        userToken={userToken}
+        setUser={setUser}
+        setModal={setModal}
+        setOpening={setOpening}
+      />
       <Switch>
         <Route path="/offer/:id">
           <Offer />
