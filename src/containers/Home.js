@@ -1,14 +1,16 @@
 // Import des HOOKS
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+// Import des images
+import banner from "../assets/img/banner.jpeg";
+import tear from "../assets/img/tear.svg";
 // Import des PACKAGES
 import axios from "axios";
-import Header from "../components/Header";
+import Item from "../components/Item";
+import Loading from "../components/Loading";
 
 const Home = () => {
   const [data, setData] = useState({});
   const [isLoading, setLoader] = useState(true);
-  const id = "132345554";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,9 +18,7 @@ const Home = () => {
         const response = await axios.get(
           "https://my-vinted-project.herokuapp.com/offers"
         );
-        console.log(response.data.results);
-        setData(response.data.results);
-        console.log(data);
+        setData(response.data);
         setLoader(false);
       } catch (error) {
         console.log(error.message);
@@ -30,15 +30,26 @@ const Home = () => {
   return (
     <div>
       {isLoading ? (
-        <span>Loading en cours</span>
+        <Loading />
       ) : (
         <main>
-          <Header />
-          <span>Home</span>
-          <Link to={`/offer/${id}`}>Voir l'annonce</Link>
-          {data.map((offers) => {
-            <span>{offers.name}</span>;
-          })}
+          <div className="after-header">
+            <div>
+              <h1>Prêts à faire du tri dans votre placard ?</h1>
+              <button className="bleu">Commencez à vendre</button>
+              <a target="_blank" href="https://www.vinted.fr/how_it_works">
+                Découvrir comment ça marche
+              </a>
+            </div>
+            <img className="banner" src={banner} alt="Bannière" />
+            <div className="tear"></div>
+          </div>
+
+          <div className="container home">
+            {data.results.map((offers) => {
+              return <Item key={offers._id} offers={offers} />;
+            })}
+          </div>
         </main>
       )}
     </div>
