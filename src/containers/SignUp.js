@@ -1,12 +1,13 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const SignUp = ({ setUser }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUserName] = useState("");
-  //   const history = useHistory();
+  const history = useHistory();
 
   const handlePass = (event) => {
     const value = event.target.value;
@@ -32,9 +33,10 @@ const SignUp = ({ setUser }) => {
       "https://my-vinted-project.herokuapp.com/user/signup",
       data
     );
-    // console.log(response.data);
-    // const token = response.data.token;
-    // setUser(token);
+    console.log(response.data);
+    const token = response.data.token;
+    setUser(token);
+    history.push("/");
   };
 
   return (
