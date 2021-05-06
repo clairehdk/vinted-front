@@ -30,7 +30,7 @@ function App() {
           <Offer />
         </Route>
         <Route path="/signup">
-          <SignUp />
+          <SignUp setUser={setUser} />
         </Route>
         <Route path="/login">
           <Login setUser={setUser} />

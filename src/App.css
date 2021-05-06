@@ -139,12 +139,54 @@ header button {
   font-weight: 300;
   color: #0ab1ba;
 }
+
+/* LOGIN // SIGNUP  */
+.form {
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form form {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+.form h2 {
+  font-size: 1.5em;
+  margin-bottom: 30px;
+}
+.form input {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20px;
+}
+.form input:not([type="submit"]) {
+  margin-bottom: 30px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+  color: #111;
+  background-color: transparent;
+}
+.form input:not([type="submit"]):hover {
+  border-bottom: 1px solid #0ab1ba;
+}
+.form input[type="submit"] {
+  border-radius: 5px;
+}
+
 /* HOME  */
 
 .home {
   margin-bottom: 50px;
 }
-/* Items  */
+
+/* Items */
 
 .items {
   display: flex;
@@ -176,7 +218,7 @@ header button {
   font-size: 12px;
 }
 
-/* OFFER  */
+/* OFFER DETAILS*/
 
 .main_offer {
   background-color: #ebedee;

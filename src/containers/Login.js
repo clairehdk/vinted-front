@@ -23,19 +23,19 @@ const Login = ({ setUser }) => {
         email: email,
         password: password,
       };
-      await axios.post(
+      const response = await axios.post(
         "https://my-vinted-project.herokuapp.com/user/login",
         data
       );
-      const token = data.token;
-      console.log(token);
-      //   history.push("/");
+      const token = response.data.token;
+      setUser(token);
+      history.push("/");
     } catch (e) {
       console.log(e);
     }
   };
   return (
-    <div>
+    <div className="form">
       <h2>Se connecter</h2>
       <form>
         <input
@@ -48,7 +48,12 @@ const Login = ({ setUser }) => {
           placeholder="Mot de passe"
           onChange={handlePass}
         />
-        <input type="submit" value="Se connecter" onClick={handleSubmit} />
+        <input
+          className="bleu"
+          type="submit"
+          value="Se connecter"
+          onClick={handleSubmit}
+        />
       </form>
     </div>
   );
