@@ -15,6 +15,20 @@ function App() {
   const [isOpened, setOpening] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [viewPass, setViewPass] = useState(false);
+  const [input, setInput] = useState("");
+  const [data, setData] = useState({});
+
+  const arrayFilter = (event) => {
+    const value = event.target.value;
+    setInput(value);
+    if (input) {
+      setData(
+        data.results.filter((offers) => offers.product_name.includes(input))
+      );
+    } else {
+      setData(data);
+    }
+  };
 
   const handleViewPass = () => {
     setViewPass(!viewPass);
@@ -47,6 +61,7 @@ function App() {
         setUser={setUser}
         setModal={setModal}
         setOpening={setOpening}
+        arrayFilter={arrayFilter}
       />
       <Switch>
         <Route path="/offer/:id">
@@ -72,7 +87,7 @@ function App() {
           />
         </Route>
         <Route path="/">
-          <Home />
+          <Home input={input} data={data} setData={setData} />
         </Route>
       </Switch>
     </Router>

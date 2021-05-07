@@ -8,12 +8,16 @@ import axios from "axios";
 import Item from "../components/Item";
 import Loading from "../components/Loading";
 
-const Home = () => {
-  const [data, setData] = useState({});
+const Home = ({ input, setInput, data, setData }) => {
   const [isLoading, setLoader] = useState(true);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(4);
+  const [limit, setLimit] = useState(10);
   const [skip, setSkip] = useState(0);
+
+  // const [title, setTitle] = useState("");
+  // const [priceMin, setPriceMin] = useState(0);
+  // const [priceMax, setPriceMax] = useState(3000);
+  // const [sort, setSort] = useState("")
 
   const nextPage = () => {
     setPage(page + 1);
@@ -26,9 +30,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const fetchData = async (limit, page) => {
+    const fetchData = async () => {
       try {
         const response = await axios.get(
+          // `https://my-vinted-project.herokuapp.com/offers?page=${page}&limit=${limit}&title=${title}&priceMin=${priceMin}&priceMax=${priceMax}&sort=${sort}`
           `https://my-vinted-project.herokuapp.com/offers?page=${page}&limit=${limit}`
         );
         setData(response.data);
@@ -60,12 +65,23 @@ const Home = () => {
 
           <div className="container home">
             {data.results.map((offers) => {
-              return <Item key={offers._id} offers={offers} />;
+              return <Item key={offers._id} offers={offers} input={input} />;
             })}
           </div>
-          <div>
-            <button onClick={previousPage}> Previous Page </button>
-            <button onClick={nextPage}> Next Page </button>
+          <div className="container pagination">
+            <button
+              className={skip !== 0 ? "" : "visibility_hidden"}
+              onClick={previousPage}
+            >
+              ...Previous Page
+            </button>
+
+            <button
+              className={skip < data.count / 2 ? "" : "visibility_hidden"}
+              onClick={nextPage}
+            >
+              Next Page...
+            </button>
           </div>
         </main>
       )}

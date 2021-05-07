@@ -49,6 +49,9 @@ input {
   color: #c22e2e;
   margin-bottom: 30px;
 }
+.visibility_hidden {
+  visibility: hidden;
+}
 /* ----------------- */
 /* HEADER  */
 /* ----------------- */
@@ -291,7 +294,17 @@ header .hidden {
   font-weight: 300;
   line-height: 12px;
 }
-
+.pagination {
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+.pagination button {
+  padding: 10px;
+  font-size: 14px;
+  background-color: white;
+  color: #0ab1ba;
+  border: none;
+}
 /* OFFER DETAILS*/
 
 .main_offer {

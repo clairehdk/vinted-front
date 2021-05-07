@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
 import Price from "./Price";
 
-const Item = ({ offers }) => {
+const Item = ({ offers, input }) => {
   return (
     <div className="items" key={offers._id}>
+      {/* {offers.filter((item) => {
+        if (!input) return true;
+        if (
+          item.product_name.includes(input) ||
+          item.product_description.includes(input)
+        ) {
+          return true;
+        }
+      })} */}
       <div className="owner">
         <img
           src={offers.owner.account.avatar}
