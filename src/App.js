@@ -13,9 +13,16 @@ import Modal from "./components/Modal";
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
   const [isOpened, setOpening] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [viewPass, setViewPass] = useState(false);
+
+  const handleViewPass = () => {
+    setViewPass(!viewPass);
+  };
 
   const setModal = () => {
     setOpening(!isOpened);
+    setErrorMessage("");
   };
 
   const setUser = (token) => {
@@ -26,6 +33,10 @@ function App() {
       Cookies.remove("userToken");
       setUserToken(null);
     }
+  };
+
+  const setError = (e) => {
+    setErrorMessage(e);
   };
 
   return (
@@ -42,10 +53,23 @@ function App() {
           <Offer />
         </Route>
         <Route path="/signup">
-          <SignUp setUser={setUser} />
+          <SignUp
+            setUser={setUser}
+            setError={setError}
+            errorMessage={errorMessage}
+            viewPass={handleViewPass}
+            view={viewPass}
+          />
         </Route>
         <Route path="/login">
-          <Login setUser={setUser} />
+          <Login
+            setUser={setUser}
+            setError={setError}
+            setErrorMessage={setErrorMessage}
+            errorMessage={errorMessage}
+            viewPass={handleViewPass}
+            view={viewPass}
+          />
         </Route>
         <Route path="/">
           <Home />

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Error from "../components/Error";
 
-const Login = ({ setUser }) => {
+const Login = ({ setUser, setError, errorMessage, viewPass, view }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const history = useHistory();
@@ -31,23 +32,29 @@ const Login = ({ setUser }) => {
       setUser(token);
       history.push("/");
     } catch (e) {
+      setError(e);
       console.log(e);
     }
   };
   return (
     <div className="form">
       <h2>Se connecter</h2>
+      {errorMessage && <Error errorMessage={errorMessage} />}
       <form>
         <input
           type="text"
           placeholder="Identifiant ou email"
           onChange={handleEmail}
         />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          onChange={handlePass}
-        />
+        <div>
+          <input
+            className="pass"
+            type={view ? "text" : "password"}
+            placeholder="Mot de passe"
+            onChange={handlePass}
+          ></input>
+          <i onClick={viewPass} class="fas fa-eye"></i>
+        </div>
         <input
           className="bleu"
           type="submit"

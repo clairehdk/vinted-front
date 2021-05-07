@@ -38,13 +38,17 @@ input {
   border: #0ab1ba 1px solid;
   background-color: white;
 }
-/* .line {
+.line {
   width: 100%;
   height: 1px;
   margin: 10px 0 10px 0;
   background: rgba(17, 17, 17, 0.08);
   border: 0;
-} */
+}
+.error {
+  color: #c22e2e;
+  margin-bottom: 30px;
+}
 /* ----------------- */
 /* HEADER  */
 /* ----------------- */
@@ -83,6 +87,10 @@ header input {
 header button {
   margin-right: 10px;
 }
+header .menu {
+  border: none;
+  background-color: transparent;
+}
 header .hidden {
   display: none;
   color: #6c6d6d;
@@ -103,21 +111,25 @@ header .hidden {
 .modal > div {
   align-items: center;
   justify-content: center;
-  width: 300px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
+  /* width: 300px; 
+  height: 300px; 
+  /* display: flex;
+  flex-direction: column; */
   background-color: white;
   padding: 20px;
   position: relative;
 }
 .modal > div button {
-  width: 200px;
+  width: 300px;
   padding: 25px;
   border: none;
   background-color: white;
   font-size: 20px;
 }
+/* .modal > div button:not(:first-child) {
+  background-color: #0ab1ba;
+  color: white;
+} */
 .modal > div button:hover {
   background-color: #ebedee;
 }
@@ -205,13 +217,13 @@ header .hidden {
   margin-bottom: 30px;
 }
 .form input {
+  margin-bottom: 20px;
   padding: 10px;
   font-size: 16px;
   font-weight: 300;
   line-height: 20px;
 }
 .form input:not([type="submit"]) {
-  margin-bottom: 30px;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -223,7 +235,11 @@ header .hidden {
   border-bottom: 1px solid #0ab1ba;
 }
 .form input[type="submit"] {
+  margin-top: 20px;
   border-radius: 5px;
+}
+.form .pass {
+  width: 92%;
 }
 
 /* HOME  */
@@ -284,6 +300,7 @@ header .hidden {
 .main_offer .container {
   display: flex;
   padding-top: 50px;
+  padding-right: 20px;
 }
 
 .product_details {

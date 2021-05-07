@@ -2,8 +2,9 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import Error from "../components/Error";
 
-const SignUp = ({ setUser }) => {
+const SignUp = ({ setUser, setError, errorMessage, viewPass, view }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUserName] = useState("");
@@ -23,25 +24,30 @@ const SignUp = ({ setUser }) => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = {
-      username: username,
-      email: email,
-      password: password,
-    };
-    const response = await axios.post(
-      "https://my-vinted-project.herokuapp.com/user/signup",
-      data
-    );
-    console.log(response.data);
-    const token = response.data.token;
-    setUser(token);
-    history.push("/");
+    try {
+      event.preventDefault();
+      const data = {
+        username: username,
+        email: email,
+        password: password,
+      };
+      const response = await axios.post(
+        "https://my-vinted-project.herokuapp.com/user/signup",
+        data
+      );
+      console.log(response.data);
+      const token = response.data.token;
+      setUser(token);
+      history.push("/");
+    } catch (e) {
+      setError(e);
+    }
   };
 
   return (
     <div className="form">
       <h2>S'inscrire</h2>
+      {errorMessage && <Error errorMessage={errorMessage} />}
       <form>
         <input
           type="text"
@@ -49,11 +55,15 @@ const SignUp = ({ setUser }) => {
           onChange={handleUserName}
         />
         <input type="text" placeholder="Email" onChange={handleEmail} />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          onChange={handlePass}
-        />
+        <div>
+          <input
+            className="pass"
+            type={view ? "text" : "password"}
+            placeholder="Mot de passe"
+            onChange={handlePass}
+          />
+          <i onClick={viewPass} class="fas fa-eye"></i>
+        </div>
         <input
           className="bleu"
           type="submit"

@@ -11,12 +11,25 @@ import Loading from "../components/Loading";
 const Home = () => {
   const [data, setData] = useState({});
   const [isLoading, setLoader] = useState(true);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(4);
+  const [skip, setSkip] = useState(0);
+
+  const nextPage = () => {
+    setPage(page + 1);
+    setSkip(skip + limit);
+  };
+
+  const previousPage = () => {
+    setPage(page - 1);
+    setSkip(skip - limit);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (limit, page) => {
       try {
         const response = await axios.get(
-          "https://my-vinted-project.herokuapp.com/offers"
+          `https://my-vinted-project.herokuapp.com/offers?page=${page}&limit=${limit}`
         );
         setData(response.data);
         setLoader(false);
@@ -25,7 +38,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [page, limit]);
 
   return (
     <div>
@@ -49,6 +62,10 @@ const Home = () => {
             {data.results.map((offers) => {
               return <Item key={offers._id} offers={offers} />;
             })}
+          </div>
+          <div>
+            <button onClick={previousPage}> Previous Page </button>
+            <button onClick={nextPage}> Next Page </button>
           </div>
         </main>
       )}

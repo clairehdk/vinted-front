@@ -10,7 +10,9 @@ const Header = ({ userToken, setUser, setModal }) => {
         </a>
         <input placeholder="Rechercher des articles"></input>
         <div>
-          <i className="fas fa-bars fa-lg hidden"></i>
+          <button className="hidden menu" onClick={setModal}>
+            <i className="fas fa-bars fa-lg"></i>
+          </button>
           {userToken ? (
             <button className="blanc" onClick={() => setUser(null)}>
               Se déconnecter

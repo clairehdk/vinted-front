@@ -9,6 +9,8 @@ const Modal = ({ isOpened, setModal }) => {
         <div className="modal">
           <div>
             <i onClick={setModal} class="fas fa-times-circle fa-lg"></i>
+            {/* <button>Vends tes articles</button>
+            <Line /> */}
             <Link to="/signup">
               <button onClick={setModal}>S'inscrire</button>
             </Link>
