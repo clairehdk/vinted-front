@@ -1,7 +1,8 @@
 import logo from "../assets/img/logo.png";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-const Header = ({ userToken, setUser, setModal, arrayFilter }) => {
+const Header = ({ userToken, setUser, setModal, handleSearch }) => {
   return (
     <header>
       <div className="container">
@@ -9,7 +10,7 @@ const Header = ({ userToken, setUser, setModal, arrayFilter }) => {
           <img src={logo} alt="Logo" />
         </a>
         <input
-          onChange={arrayFilter}
+          onChange={handleSearch}
           placeholder="Rechercher des articles"
         ></input>
         <div>
@@ -27,7 +28,13 @@ const Header = ({ userToken, setUser, setModal, arrayFilter }) => {
               </button>
             </>
           )}
-          <button className="bleu">Vends tes articles</button>
+          {/* <Redirect to="/publish" />  */}
+          <button
+            // onClick={userToken ? <Redirect to="/publish" /> : setModal}
+            className="bleu"
+          >
+            Vends tes articles
+          </button>
         </div>
       </div>
     </header>

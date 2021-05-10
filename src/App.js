@@ -9,27 +9,34 @@ import Header from "./components/Header";
 import SignUp from "./containers/SignUp";
 import Login from "./containers/Login";
 import Modal from "./components/Modal";
+import Publish from "./containers/Publish";
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
   const [isOpened, setOpening] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [viewPass, setViewPass] = useState(false);
-  const [input, setInput] = useState("");
-  const [data, setData] = useState({});
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [skip, setSkip] = useState(0);
+  const [title, setTitle] = useState("");
+  const [priceMin, setPriceMin] = useState(0);
+  const [priceMax, setPriceMax] = useState(500);
+  const [value, setValue] = useState([0, 500]);
+  const [sort, setSort] = useState("price_asc");
 
-  const arrayFilter = (event) => {
+  const handleSearch = (event) => {
     const value = event.target.value;
-    setInput(value);
-    if (input) {
-      setData(
-        data.results.filter((offers) => offers.product_name.includes(input))
-      );
-    } else {
-      setData(data);
-    }
+    setTitle(value);
   };
 
+  const handleSort = () => {
+    if (sort === "price_asc") {
+      setSort("price_desc");
+    } else if (sort === "price_desc") {
+      setSort("price_asc");
+    }
+  };
   const handleViewPass = () => {
     setViewPass(!viewPass);
   };
@@ -61,7 +68,7 @@ function App() {
         setUser={setUser}
         setModal={setModal}
         setOpening={setOpening}
-        arrayFilter={arrayFilter}
+        handleSearch={handleSearch}
       />
       <Switch>
         <Route path="/offer/:id">
@@ -86,8 +93,26 @@ function App() {
             view={viewPass}
           />
         </Route>
+        <Route path="/publish">
+          <Publish token={userToken} />
+        </Route>
         <Route path="/">
-          <Home input={input} data={data} setData={setData} />
+          <Home
+            title={title}
+            page={page}
+            setPage={setPage}
+            limit={limit}
+            setSkip={setSkip}
+            skip={skip}
+            setPriceMin={setPriceMin}
+            setPriceMax={setPriceMax}
+            priceMax={priceMax}
+            priceMin={priceMin}
+            value={value}
+            setValue={setValue}
+            handleSort={handleSort}
+            sort={sort}
+          />
         </Route>
       </Switch>
     </Router>

@@ -2,22 +2,37 @@
 import { useEffect, useState } from "react";
 // Import des images
 import banner from "../assets/img/banner.jpeg";
-import tear from "../assets/img/tear.svg";
 // Import des PACKAGES
 import axios from "axios";
+// Import des compansants
 import Item from "../components/Item";
 import Loading from "../components/Loading";
+import Range from "../components/Range";
 
-const Home = ({ input, setInput, data, setData }) => {
+const Home = ({
+  title,
+  page,
+  setPage,
+  setSkip,
+  skip,
+  limit,
+  setPriceMin,
+  setPriceMax,
+  priceMax,
+  priceMin,
+  value,
+  setValue,
+  handleSort,
+  sort,
+}) => {
+  const [data, setData] = useState({});
   const [isLoading, setLoader] = useState(true);
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
-  const [skip, setSkip] = useState(0);
 
-  // const [title, setTitle] = useState("");
-  // const [priceMin, setPriceMin] = useState(0);
-  // const [priceMax, setPriceMax] = useState(3000);
-  // const [sort, setSort] = useState("")
+  const rangeSelector = (event, newValue) => {
+    setValue(newValue);
+    setPriceMin(newValue[0]);
+    setPriceMax(newValue[1]);
+  };
 
   const nextPage = () => {
     setPage(page + 1);
@@ -29,21 +44,26 @@ const Home = ({ input, setInput, data, setData }) => {
     setSkip(skip - limit);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          // `https://my-vinted-project.herokuapp.com/offers?page=${page}&limit=${limit}&title=${title}&priceMin=${priceMin}&priceMax=${priceMax}&sort=${sort}`
-          `https://my-vinted-project.herokuapp.com/offers?page=${page}&limit=${limit}`
-        );
-        setData(response.data);
-        setLoader(false);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchData();
-  }, [page, limit]);
+  useEffect(
+    () => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            // `https://my-vinted-project.herokuapp.com/offers?page=${page}&limit=${limit}&title=${title}&priceMin=${priceMin}&priceMax=${priceMax}&sort=${sort}`
+            `https://my-vinted-project.herokuapp.com/offers?page=${page}&limit=${limit}&title=${title}&priceMin=${priceMin}&priceMax=${priceMax}&sort=${sort}`
+          );
+          setData(response.data);
+          setLoader(false);
+          // setTitle(input);
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+      fetchData();
+    },
+    [page, limit, title, priceMin, priceMax, sort],
+    priceMin
+  );
 
   return (
     <div>
@@ -51,6 +71,26 @@ const Home = ({ input, setInput, data, setData }) => {
         <Loading />
       ) : (
         <main>
+          <div className="filters container">
+            <p>Trier par prix</p>
+            <div className="sort">
+              <button
+                className={sort === "price_asc" && "visibility_hidden"}
+                onClick={handleSort}
+                type="checkox"
+              >
+                <i class="fas fa-arrow-up fa-lg"></i>
+              </button>
+              <button
+                className={sort === "price_desc" && "visibility_hidden"}
+                onClick={handleSort}
+                type="checkox"
+              >
+                <i class="fas fa-arrow-down fa-lg"></i>
+              </button>
+            </div>
+            <Range value={value} rangeSelector={rangeSelector} />
+          </div>
           <div className="after-header">
             <div>
               <h1>Prêts à faire du tri dans votre placard ?</h1>
@@ -65,7 +105,7 @@ const Home = ({ input, setInput, data, setData }) => {
 
           <div className="container home">
             {data.results.map((offers) => {
-              return <Item key={offers._id} offers={offers} input={input} />;
+              return <Item key={offers._id} offers={offers} />;
             })}
           </div>
           <div className="container pagination">

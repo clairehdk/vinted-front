@@ -24,6 +24,7 @@ button {
   line-height: 16px;
   font-weight: 300;
   outline: none;
+  cursor: pointer;
 }
 input {
   outline: none;
@@ -144,6 +145,71 @@ header .hidden {
 }
 .modal i:hover {
   color: #d6d6d6;
+}
+
+/* FILTERS  */
+
+.filters {
+  display: flex;
+  align-items: center;
+  margin-top: 32px;
+}
+.filters p {
+  margin-right: 20px;
+  font-size: 12px;
+}
+/* Sort  */
+.sort {
+  display: flex;
+  background-color: #0ab1ba;
+  margin-right: 20px;
+  border-radius: 20px;
+}
+.sort button {
+  background-color: #0ab1ba;
+  color: white;
+  border: none;
+  border-radius: 20px;
+}
+/* Price Range */
+.range {
+  width: 50%;
+}
+.slider {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  /* width: 60%; */
+}
+
+.slider .MuiSlider-root {
+  color: #0ab1ba;
+}
+.slider .MuiSlider-track {
+  height: 4px;
+}
+.slider .MuiSlider-rail {
+  height: 4px;
+}
+.slider .MuiSlider-thumb {
+  width: 13px;
+  height: 13px;
+  border: white 1px solid;
+}
+.MuiTypography-gutterBottom {
+  margin-bottom: 0 !important;
+}
+.slider .PrivateValueLabel-circle-4 {
+  width: 25px;
+  height: 25px;
+}
+.slider .MuiSlider-valueLabel {
+  left: calc(-50% - 2px);
+  top: -30px;
+  font-size: 10px;
+}
+.slider .MuiSlider-root {
+  width: 70%;
 }
 
 /* AFTER HEADER SECTION  */
@@ -373,6 +439,32 @@ header .hidden {
   margin: 0;
 }
 
+/* PUBLISH  */
+
+.publish {
+  background-color: #ebedee;
+  height: 100vh;
+  padding: 50px;
+}
+.publish .container {
+  flex-direction: column;
+  width: 800px;
+}
+.publish h2 {
+  font-size: 1.5em;
+}
+.publish_details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.publish_details > div {
+  display: flex;
+  justify-content: space-between;
+}
 @media (max-width: 1230px) {
   .container {
     width: 100%;

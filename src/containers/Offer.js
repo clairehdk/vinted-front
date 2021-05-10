@@ -1,5 +1,5 @@
 // Import des HOOKS
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 // Import des PACKAGES
 import axios from "axios";

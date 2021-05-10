@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Error from "../components/Error";
 
 const Login = ({ setUser, setError, errorMessage, viewPass, view }) => {
