@@ -2,6 +2,7 @@ import { Redirect, Link, useHistory } from "react-router-dom";
 
 const Checkout = ({
   token,
+  price,
   amount,
   product_details,
   title,
@@ -33,7 +34,7 @@ const Checkout = ({
                 </div>
               </div>
               <div>
-                <h3>{amount.toFixed(2).replace(".", ",")} €</h3>
+                <h3>{price.toFixed(2).replace(".", ",")} €</h3>
               </div>
             </div>
           </div>
@@ -55,7 +56,7 @@ const Checkout = ({
           <h1>Résumé de la commande</h1>
           <div>
             <h4>Commande</h4>
-            <span>{amount.toFixed(2).replace(".", ",")} €</span>
+            <span>{price.toFixed(2).replace(".", ",")} €</span>
           </div>
           <div>
             <h4>Protection acheteurs</h4>

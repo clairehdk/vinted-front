@@ -85,6 +85,7 @@ const Product = ({ token }) => {
       ) : (
         <Checkout
           token={token}
+          price={data.product_price}
           amount={data.product_price}
           title={data.product_name}
           product_details={data.product_details}
