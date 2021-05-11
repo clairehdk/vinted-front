@@ -1,8 +1,8 @@
 import logo from "../assets/img/logo.png";
-import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 const Header = ({ userToken, setUser, setModal, handleSearch }) => {
+  let history = useHistory();
   return (
     <header>
       <div className="container">
@@ -30,7 +30,9 @@ const Header = ({ userToken, setUser, setModal, handleSearch }) => {
           )}
           {/* <Redirect to="/publish" />  */}
           <button
-            // onClick={userToken ? <Redirect to="/publish" /> : setModal}
+            onClick={() => {
+              userToken ? history.push("/publish") : setModal();
+            }}
             className="bleu"
           >
             Vends tes articles

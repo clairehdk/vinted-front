@@ -49,7 +49,6 @@ const Home = ({
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            // `https://my-vinted-project.herokuapp.com/offers?page=${page}&limit=${limit}&title=${title}&priceMin=${priceMin}&priceMax=${priceMax}&sort=${sort}`
             `https://my-vinted-project.herokuapp.com/offers?page=${page}&limit=${limit}&title=${title}&priceMin=${priceMin}&priceMax=${priceMax}&sort=${sort}`
           );
           setData(response.data);

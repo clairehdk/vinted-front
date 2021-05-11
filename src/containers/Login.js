@@ -53,7 +53,7 @@ const Login = ({ setUser, setError, errorMessage, viewPass, view }) => {
             placeholder="Mot de passe"
             onChange={handlePass}
           ></input>
-          <i onClick={viewPass} class="fas fa-eye"></i>
+          <i onClick={viewPass} className="fas fa-eye"></i>
         </div>
         <input
           className="bleu"

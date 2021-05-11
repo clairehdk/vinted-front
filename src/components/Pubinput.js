@@ -1,6 +1,6 @@
 import React from "react";
 
-const Publish_input = ({ title, type, name, placeholder, onChange }) => {
+const Pubinput = ({ title, type, name, placeholder, onChange }) => {
   return (
     <div>
       <span>{title}</span>
@@ -14,4 +14,4 @@ const Publish_input = ({ title, type, name, placeholder, onChange }) => {
   );
 };
 
-export default Publish_input;
+export default Pubinput;

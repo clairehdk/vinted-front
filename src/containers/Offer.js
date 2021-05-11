@@ -1,17 +1,24 @@
 // Import des HOOKS
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 // Import des PACKAGES
 import axios from "axios";
 // Import des COMPOSANTS
 import Price from "../components/Price";
 import Loading from "../components/Loading";
 import Line from "../components/Line";
+import Checkout from "../components/Checkout";
 
-const Product = () => {
+const Product = ({ token }) => {
   const { id } = useParams();
   const [data, setData] = useState({});
   const [isLoading, setLoader] = useState(true);
+  const [checkOut, setCheckOut] = useState(false);
+
+  const handleCheckOut = () => {
+    setCheckOut(!checkOut);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,13 +33,13 @@ const Product = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <div>
       {isLoading ? (
         <Loading />
-      ) : (
+      ) : !checkOut ? (
         <main>
           <div className="main_offer">
             <div className="container">
@@ -64,10 +71,26 @@ const Product = () => {
                   />
                   <span>{data.owner.account.username}</span>
                 </div>
+                <div>
+                  <button onClick={handleCheckOut} className="bleu">
+                    Acheter
+                  </button>
+                  {/* <Link to="/checkout">
+                  </Link> */}
+                </div>
               </div>
             </div>
           </div>
         </main>
+      ) : (
+        <Checkout
+          token={token}
+          price={data.product_price}
+          name={data.product_name}
+          product_details={data.product_details}
+          owner={data.owner}
+          picture={data.product_image.secure_url}
+        />
       )}
     </div>
   );

@@ -1,11 +1,12 @@
-import Publish_input from "../components/Publish_input";
+import Pubinput from "../components/Pubinput";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 import { useState } from "react";
-import Loading from "../components/Loading";
+import { useHistory } from "react-router-dom";
+import Line from "../components/Line";
 
-const Publish = ({ token }) => {
-  const [data, setData] = useState();
-  const [isLoading, setLoader] = useState(true);
+const Publish = ({ token, setModal }) => {
+  let history = useHistory();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [color, setColor] = useState("");
@@ -75,68 +76,90 @@ const Publish = ({ token }) => {
           },
         }
       );
-      console.log(response.data);
-      setData(response.data);
-      setLoader(false);
+      if (response.data._id) {
+        history.push(`/offer/${response.data._id}`);
+      } else {
+        alert("Une erreur est survenue");
+      }
     } catch (e) {
       console.log(e.message);
     }
   };
 
-  return (
+  return token ? (
     <div className="publish">
       <div className="container">
-        <h2>Vends ton article</h2>
+        <h2>Vends tes articles</h2>
         <form onSubmit={handleSubmit}>
-          <div className="publish_details">
-            <input onChange={handlePicture} name="picture" type="file"></input>
+          <div className="publish_details file">
+            <div>
+              <button className="blanc">
+                <i className="fas fa-plus fa-lg"></i>
+                <label htmlFor="file">Ajoute des photos</label>
+              </button>
+            </div>
+
+            <input id="file" onChange={handlePicture} type="file"></input>
           </div>
           <div className="publish_details">
-            <Publish_input
+            <Pubinput
               onChange={handleName}
               title="Titre"
               name="name"
               type="text"
               placeholder="ex : Chemise Sézane verte"
             />
-            <Publish_input
+            <Line />
+            <div>
+              <span>Décris ton article</span>
+              <textarea
+                onChange={handleDescription}
+                name="description"
+                placeholder="ex : porté quelques fois, taille correctement"
+              />
+            </div>
+            {/* <Pubinput
               onChange={handleDescription}
               title="Décris ton article"
               name="description"
-              type="text"
+              type="textaera"
               placeholder="ex : porté quelques fois, taille correctement"
-            />
+            /> */}
           </div>
           <div className="publish_details">
-            <Publish_input
+            <Pubinput
               onChange={handleColor}
               title="Couleur"
               name="color"
               type="text"
               placeholder="Couleur"
             />
-            <Publish_input
+            <Line />
+            <Pubinput
               onChange={handleBrand}
               title="Marque"
               name="brand"
               type="text"
               placeholder="Marque"
             />
-            <Publish_input
+            <Line />
+            <Pubinput
               onChange={handleLocation}
               title="Emplacement"
               name="location"
               type="text"
               placeholder="Emplacement"
             />
-            <Publish_input
+            <Line />
+            <Pubinput
               onChange={handleSize}
               title="Taille"
               name="size"
               type="text"
               placeholder="Taille"
             />
-            <Publish_input
+            <Line />
+            <Pubinput
               onChange={handleEtat}
               title="Etat"
               name="etat"
@@ -145,7 +168,7 @@ const Publish = ({ token }) => {
             />
           </div>
           <div className="publish_details">
-            <Publish_input
+            <Pubinput
               onChange={handlePrice}
               title="Prix"
               name="price"
@@ -153,11 +176,14 @@ const Publish = ({ token }) => {
               placeholder="0,00€"
             />
           </div>
-          <input type="submit" value="Ajouter"></input>
+          <div className="submit">
+            <input className="bleu" type="submit" value="Ajouter"></input>
+          </div>
         </form>
       </div>
-      {/* {isLoading ? <Loading /> : alert("Votre offre a été créée")} */}
     </div>
+  ) : (
+    <Redirect to="/login" />
   );
 };
 

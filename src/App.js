@@ -10,6 +10,7 @@ import SignUp from "./containers/SignUp";
 import Login from "./containers/Login";
 import Modal from "./components/Modal";
 import Publish from "./containers/Publish";
+import Payment from "./containers/Payment";
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
@@ -72,7 +73,7 @@ function App() {
       />
       <Switch>
         <Route path="/offer/:id">
-          <Offer />
+          <Offer token={userToken} />
         </Route>
         <Route path="/signup">
           <SignUp
@@ -94,7 +95,13 @@ function App() {
           />
         </Route>
         <Route path="/publish">
-          <Publish token={userToken} />
+          <Publish token={userToken} setModal={setModal} />
+        </Route>
+        {/* <Route path="/checkout">
+          <Checkout token={userToken} />
+        </Route> */}
+        <Route path="/payment">
+          <Payment token={userToken} />
         </Route>
         <Route path="/">
           <Home
