@@ -32,7 +32,7 @@ const SignUp = ({ setUser, setError, errorMessage, viewPass, view }) => {
         password: password,
       };
       const response = await axios.post(
-        "https://my-vinted-project.herokuapp.com/user/signup",
+        "http://localhost:3001/user/signup",
         data
       );
       console.log(response.data);

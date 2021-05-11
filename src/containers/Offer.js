@@ -23,9 +23,7 @@ const Product = ({ token }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `https://my-vinted-project.herokuapp.com/offer/${id}`
-        );
+        const response = await axios.get(`http://localhost:3001/offer/${id}`);
         setData(response.data);
         setLoader(false);
       } catch (error) {

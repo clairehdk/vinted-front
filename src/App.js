@@ -100,7 +100,7 @@ function App() {
         {/* <Route path="/checkout">
           <Checkout token={userToken} />
         </Route> */}
-        <Route path="/payment">
+        <Route path="/payment/:amount/:name">
           <Payment token={userToken} />
         </Route>
         <Route path="/">

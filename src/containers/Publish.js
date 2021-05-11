@@ -68,7 +68,7 @@ const Publish = ({ token, setModal }) => {
       formData.append("price", price);
       formData.append("picture", picture);
       const response = await axios.post(
-        "https://my-vinted-project.herokuapp.com/offer/publish",
+        "http://localhost:3001/offer/publish",
         formData,
         {
           headers: {

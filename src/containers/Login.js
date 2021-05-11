@@ -25,7 +25,7 @@ const Login = ({ setUser, setError, errorMessage, viewPass, view }) => {
         password: password,
       };
       const response = await axios.post(
-        "https://my-vinted-project.herokuapp.com/user/login",
+        "http://localhost:3001/user/login",
         data
       );
       const token = response.data.token;
