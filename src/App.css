@@ -112,7 +112,7 @@ header .hidden {
   align-items: center;
   justify-content: center;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   height: 100%;
   background-color: rgba(17, 17, 17, 0.48);
@@ -378,6 +378,12 @@ header .hidden {
 }
 /* OFFER DETAILS*/
 
+.buy {
+  margin-top: 30px;
+  font-size: 14px;
+  width: 100%;
+  padding: 10px;
+}
 .main_offer {
   background-color: #ebedee;
 }
@@ -521,7 +527,7 @@ header .hidden {
   cursor: pointer;
 }
 .file input {
-  display: none;
+  display: block;
 }
 .submit {
   display: flex;
@@ -631,6 +637,47 @@ header .hidden {
   line-height: 22px;
   color: #666666;
   font-weight: 300;
+}
+
+/* PAIEMENT */
+.container_payment {
+  background-color: #ebedee;
+  width: 450px;
+  margin: 0 auto;
+  padding: 50px;
+}
+.container_payment button {
+  width: 200px;
+  font-size: 15px;
+  margin-top: 20px;
+  padding: 10px;
+  display: block;
+  margin: 0 auto;
+}
+.container_payment > div {
+  margin-bottom: 20px;
+}
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+}
+.payment h1 {
+  margin-top: 70px;
+  text-align: center;
+}
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+.success button {
+  padding: 15px;
+  font-size: 15px;
+  margin-top: 50px;
 }
 @media (max-width: 1230px) {
   .container {

@@ -8,6 +8,7 @@ import axios from "axios";
 import Item from "../components/Item";
 import Loading from "../components/Loading";
 import Range from "../components/Range";
+import { Link } from "react-router-dom";
 
 const Home = ({
   title,
@@ -24,6 +25,7 @@ const Home = ({
   setValue,
   handleSort,
   sort,
+  token,
 }) => {
   const [data, setData] = useState({});
   const [isLoading, setLoader] = useState(true);
@@ -49,7 +51,7 @@ const Home = ({
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:3001/offers?page=${page}&limit=${limit}&title=${title}&priceMin=${priceMin}&priceMax=${priceMax}&sort=${sort}`
+            `https://my-vinted-project.herokuapp.com/offers?page=${page}&limit=${limit}&title=${title}&priceMin=${priceMin}&priceMax=${priceMax}&sort=${sort}`
           );
           setData(response.data);
           setLoader(false);
@@ -93,7 +95,9 @@ const Home = ({
           <div className="after-header">
             <div>
               <h1>Prêts à faire du tri dans votre placard ?</h1>
-              <button className="bleu">Commencez à vendre</button>
+              <Link to="/publish">
+                <button className="bleu">Commencez à vendre</button>
+              </Link>
               <a target="_blank" href="https://www.vinted.fr/how_it_works">
                 Découvrir comment ça marche
               </a>

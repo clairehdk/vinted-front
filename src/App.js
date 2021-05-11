@@ -100,7 +100,7 @@ function App() {
         {/* <Route path="/checkout">
           <Checkout token={userToken} />
         </Route> */}
-        <Route path="/payment/:amount/:name">
+        <Route path="/payment/:amount/:title">
           <Payment token={userToken} />
         </Route>
         <Route path="/">
@@ -119,6 +119,7 @@ function App() {
             setValue={setValue}
             handleSort={handleSort}
             sort={sort}
+            token={userToken}
           />
         </Route>
       </Switch>

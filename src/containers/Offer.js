@@ -23,7 +23,9 @@ const Product = ({ token }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/offer/${id}`);
+        const response = await axios.get(
+          `https://my-vinted-project.herokuapp.com/offer/${id}`
+        );
         setData(response.data);
         setLoader(false);
       } catch (error) {
@@ -70,7 +72,7 @@ const Product = ({ token }) => {
                   <span>{data.owner.account.username}</span>
                 </div>
                 <div>
-                  <button onClick={handleCheckOut} className="bleu">
+                  <button onClick={handleCheckOut} className="bleu buy">
                     Acheter
                   </button>
                   {/* <Link to="/checkout">
@@ -83,8 +85,8 @@ const Product = ({ token }) => {
       ) : (
         <Checkout
           token={token}
-          price={data.product_price}
-          name={data.product_name}
+          amount={data.product_price}
+          title={data.product_name}
           product_details={data.product_details}
           owner={data.owner}
           picture={data.product_image.secure_url}

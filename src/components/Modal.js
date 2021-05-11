@@ -18,6 +18,15 @@ const Modal = ({ isOpened, setModal }) => {
             <Link to="/login">
               <button onClick={setModal}>Se connecter</button>
             </Link>
+            <Line />
+            <Link to="/publish">
+              <button
+                style={{ backgroundColor: "#0ab1ba", color: "white" }}
+                onClick={setModal}
+              >
+                Vends tes articles
+              </button>
+            </Link>
           </div>
         </div>
       )}

@@ -1,10 +1,16 @@
 import { Redirect, Link, useHistory } from "react-router-dom";
 
-const Checkout = ({ token, price, product_details, name, owner, picture }) => {
+const Checkout = ({
+  token,
+  amount,
+  product_details,
+  title,
+  owner,
+  picture,
+}) => {
   const shippingFee = 2.88;
   const protection = 1.2;
-  const total = shippingFee + protection + price;
-  let history = useHistory();
+  amount = shippingFee + protection + amount;
 
   return token ? (
     <div className="checkout">
@@ -15,10 +21,10 @@ const Checkout = ({ token, price, product_details, name, owner, picture }) => {
             <div className="order_detail">
               <div>
                 <div>
-                  <img src={picture} alt={name} />
+                  <img src={picture} alt={title} />
                 </div>
                 <div>
-                  <h3>{name}</h3>
+                  <h3>{title}</h3>
                   <div>
                     <span>{product_details[2].size} · </span>
                     <span>{product_details[1].etat} · </span>
@@ -27,7 +33,7 @@ const Checkout = ({ token, price, product_details, name, owner, picture }) => {
                 </div>
               </div>
               <div>
-                <h3>{price.toFixed(2).replace(".", ",")} €</h3>
+                <h3>{amount.toFixed(2).replace(".", ",")} €</h3>
               </div>
             </div>
           </div>
@@ -49,7 +55,7 @@ const Checkout = ({ token, price, product_details, name, owner, picture }) => {
           <h1>Résumé de la commande</h1>
           <div>
             <h4>Commande</h4>
-            <span>{price.toFixed(2).replace(".", ",")} €</span>
+            <span>{amount.toFixed(2).replace(".", ",")} €</span>
           </div>
           <div>
             <h4>Protection acheteurs</h4>
@@ -61,21 +67,11 @@ const Checkout = ({ token, price, product_details, name, owner, picture }) => {
           </div>
           <div>
             <h4>Total</h4>
-            <span>{total.toFixed(2).replace(".", ",")} €</span>
+            <span>{amount.toFixed(2).replace(".", ",")} €</span>
           </div>
           <div>
-            <Link to="/payment">
-              <button
-                onClick={() => {
-                  history.push("/payment", {
-                    amount: price,
-                    name: name,
-                  });
-                }}
-                className="bleu"
-              >
-                Payer maintenant
-              </button>
+            <Link to={`/payment/${amount}/${title}`}>
+              <button className="bleu">Payer maintenant</button>
             </Link>
           </div>
         </div>
