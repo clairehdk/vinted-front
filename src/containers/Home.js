@@ -113,14 +113,16 @@ const Home = ({
           </div>
           <div className="container pagination">
             <button
-              className={skip !== 0 ? "" : "visibility_hidden"}
+              className={page > 1 ? "" : "visibility_hidden"}
               onClick={previousPage}
             >
               ...Previous Page
             </button>
 
             <button
-              className={skip < data.count / 2 ? "" : "visibility_hidden"}
+              className={
+                page === 1 && data.count > limit ? "" : "visibility_hidden"
+              }
               onClick={nextPage}
             >
               Next Page...

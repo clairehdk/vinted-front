@@ -1,8 +1,24 @@
 import logo from "../assets/img/logo.png";
-import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 
-const Header = ({ userToken, setUser, setModal, handleSearch }) => {
+const Header = ({
+  userToken,
+  setUser,
+  setModal,
+  handleSearch,
+  setTitle,
+  title,
+}) => {
   let history = useHistory();
+  let location = useLocation();
+
+  useEffect(() => {
+    setTitle("");
+    console.log(location);
+    console.log(title);
+  }, [location]);
+
   return (
     <header>
       <div className="container">
@@ -12,6 +28,7 @@ const Header = ({ userToken, setUser, setModal, handleSearch }) => {
         <input
           onChange={handleSearch}
           placeholder="Rechercher des articles"
+          value={title}
         ></input>
         <div>
           <button className="hidden menu" onClick={setModal}>

@@ -29,6 +29,7 @@ function App() {
   const handleSearch = (event) => {
     const value = event.target.value;
     setTitle(value);
+    setPage(1);
   };
 
   const handleSort = () => {
@@ -70,6 +71,8 @@ function App() {
         setModal={setModal}
         setOpening={setOpening}
         handleSearch={handleSearch}
+        setTitle={setTitle}
+        title={title}
       />
       <Switch>
         <Route path="/offer/:id">

@@ -27,8 +27,8 @@ const SignUp = ({ setUser, setError, errorMessage, viewPass, view }) => {
     try {
       event.preventDefault();
       const data = {
-        username: username,
         email: email,
+        username: username,
         password: password,
       };
       const response = await axios.post(
@@ -40,6 +40,7 @@ const SignUp = ({ setUser, setError, errorMessage, viewPass, view }) => {
       setUser(token);
       history.push("/");
     } catch (e) {
+      console.log(e);
       setError(e);
     }
   };
