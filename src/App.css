@@ -527,7 +527,7 @@ header .hidden {
   cursor: pointer;
 }
 .file input {
-  display: block;
+  display: none;
 }
 .submit {
   display: flex;
